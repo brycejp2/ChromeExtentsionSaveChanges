@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="popup.css">
+  <title>DOM Change Recorder</title>
+</head>
+<body>
+  <header>
+    <h1>DOM Change Recorder</h1>
+    <span id="status" class="status idle">idle</span>
+  </header>
+
+  <div class="controls">
+    <button id="toggle" class="primary">Start capture</button>
+    <button id="clear">Clear</button>
+  </div>
+
+  <div class="meta">
+    <span id="count">0 changes</span>
+    <span id="url" class="url"></span>
+  </div>
+
+  <ul id="list" class="list">
+    <li class="empty">No changes recorded yet. Click “Start capture”, then edit
+      the page (e.g. in the DevTools Elements panel).</li>
+  </ul>
+
+  <div class="exports">
+    <button id="copy">Copy log</button>
+    <button id="download">Download .txt</button>
+    <button id="diff">Download diff</button>
+    <button id="snapshot">Download snapshot</button>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "DOM Change Recorder",
+  "version": "1.0.0",
+  "description": "Records live HTML/CSS changes you make to a page (incl. DevTools edits), notes the snapshot line and CSS selector, and exports them as a change log, text file, or unified diff.",
+  "permissions": ["activeTab", "downloads", "storage", "clipboardWrite"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "DOM Change Recorder",
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/selector.js", "src/serializer.js", "src/diff.js", "src/content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ]
+}
