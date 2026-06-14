@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DOM Change Recorder — sample page</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; margin: 2rem auto; max-width: 640px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    button { padding: 6px 12px; }
+  </style>
+</head>
+<body>
+  <h1 id="title">Edit me</h1>
+
+  <p class="lead">
+    Open the extension, click <strong>Start capture</strong>, then change things
+    on this page — via the DevTools Elements panel or the buttons below.
+  </p>
+
+  <div class="card" id="box">
+    <h2>A card</h2>
+    <ul id="items">
+      <li>First item</li>
+      <li>Second item</li>
+      <li>Third item</li>
+    </ul>
+  </div>
+
+  <div class="controls">
+    <button id="add">Add item</button>
+    <button id="remove">Remove last item</button>
+    <button id="rename">Rename title</button>
+    <button id="restyle">Toggle highlight</button>
+  </div>
+
+  <script>
+    // Simple buttons so you can generate changes without DevTools.
+    const items = document.getElementById('items');
+    let n = 3;
+    document.getElementById('add').onclick = () => {
+      const li = document.createElement('li');
+      li.textContent = 'Item ' + (++n);
+      items.appendChild(li);
+    };
+    document.getElementById('remove').onclick = () => {
+      if (items.lastElementChild) items.removeChild(items.lastElementChild);
+    };
+    document.getElementById('rename').onclick = () => {
+      document.getElementById('title').textContent = 'Renamed at ' + new Date().toLocaleTimeString();
+    };
+    document.getElementById('restyle').onclick = () => {
+      const box = document.getElementById('box');
+      box.style.background = box.style.background ? '' : '#fff3cd';
+    };
+  </script>
+</body>
+</html>
